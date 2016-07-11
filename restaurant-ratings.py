@@ -5,7 +5,7 @@ import sys
 ratings_file = open(sys.argv[1])
 
 #Initialize dictionary as empty.
-restaurant_ratings = {}
+restaurants = {}
 
 #Loop over the restaurant ratings file
 for line in ratings_file:
@@ -16,7 +16,16 @@ for line in ratings_file:
 
     #line[0] is the restaurant name; line[1] is the rating. 
     #Use the name as the key and the rating as the value.
-    restaurant_ratings[line[0]] = line[1]
+    restaurants[line[0]] = line[1]
 
-print restaurant_ratings
+#Convert dictionary into list of tuples.
+#Sort restaurants alphabetically.
+sorted_restaurants = sorted(restaurants.items())
+
+#Loop over sorted list.
+for restaurant in sorted_restaurants:
+    restaurant_name = restaurant[0]
+    restaurant_rating = restaurant[1]
+
+    print "{} is rated at {}.".format(restaurant_name, restaurant_rating)
 
