@@ -1,7 +1,7 @@
 # your code goes here
 import sys 
 
-def sort_restaurants(filename):
+def make_restaurant_structure(filename):
     """Given a file of restaurants and related data, sort by restaurant name.
 
     filename: file that contains restaurant name and related data
@@ -24,22 +24,27 @@ def sort_restaurants(filename):
 
         #line[0] is the restaurant name; line[1] is the rating. 
         #Use the name as the key and the rating as the value.
-        restaurants[line[0]] = line[1]
+        restaurants[line[0]] = int(line[1])
+
+    print "Let's add another restaurant."
+    new_restaurant_name = raw_input("What is the restaurant name? >>> ")
+    new_restaurant_rating = int(raw_input("What is its rating? >>> "))
+
+    restaurants[new_restaurant_name] = new_restaurant_rating
 
     #Convert dictionary into list of tuples.
     #Sort restaurants alphabetically.
-    return sorted(restaurants.items())
+    return restaurants
 
-def print_restaurant_ratings():
+def print_restaurant_ratings(filename):
     """Given file of restaurant data, prints sorted data.
-
-    Restaurant data must come from a file given as a command line argument.
 
     Prints restaurant info in the following format:
         "<Restaurant Name> is rated at <Restaurant Rating>."
     """
+    restaurants = make_restaurant_structure(filename)
 
-    sorted_restaurants = sort_restaurants(sys.argv[1])
+    sorted_restaurants = sorted(restaurants.items())
 
     #Loop over sorted restaurants.
     for restaurant in sorted_restaurants:
@@ -48,5 +53,5 @@ def print_restaurant_ratings():
 
         print "{} is rated at {}.".format(restaurant_name, restaurant_rating)
 
-print_restaurant_ratings()
+print_restaurant_ratings(sys.argv[1])
 
