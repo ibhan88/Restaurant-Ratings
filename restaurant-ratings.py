@@ -2,14 +2,21 @@
 import sys 
 
 def sort_restaurants(filename):
+    """Given a file of restaurants and related data, sort by restaurant name.
+
+    filename: file that contains restaurant name and related data
+    Each line of the file should be formatted as follows:
+        restaurant:rating:other data:etc.
+    Returns a list of tuples containing restaurant name, rating, other data, etc.
+    """
     #Open the file containing restaurant names and ratings.
-    ratings_file = open(filename)
+    restaurants_file = open(filename)
 
     #Initialize dictionary as empty.
     restaurants = {}
 
     #Loop over the restaurant ratings file
-    for line in ratings_file:
+    for line in restaurants_file:
 
         #Create list containing one restaurant name and rating
         line = line.rstrip()
@@ -24,6 +31,13 @@ def sort_restaurants(filename):
     return sorted(restaurants.items())
 
 def print_restaurant_ratings():
+    """Given file of restaurant data, prints sorted data.
+
+    Restaurant data must come from a file given as a command line argument.
+
+    Prints restaurant info in the following format:
+        "<Restaurant Name> is rated at <Restaurant Rating>."
+    """
 
     sorted_restaurants = sort_restaurants(sys.argv[1])
 
