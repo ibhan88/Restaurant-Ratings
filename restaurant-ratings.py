@@ -1,5 +1,5 @@
 # your code goes here
-import sys 
+import sys, random
 
 def make_restaurant_structure(filename):
     """Given a file of restaurants and related data, sort by restaurant name.
@@ -26,15 +26,31 @@ def make_restaurant_structure(filename):
         #Use the name as the key and the rating as the value.
         restaurants[line[0]] = int(line[1])
 
+    #Convert dictionary into list of tuples.
+    #Sort restaurants alphabetically.
+    return restaurants
+
+
+def add_restaurant(restaurant_structure):  
     print "Let's add another restaurant."
     new_restaurant_name = raw_input("What is the restaurant name? >>> ")
     new_restaurant_rating = int(raw_input("What is its rating? >>> "))
 
-    restaurants[new_restaurant_name] = new_restaurant_rating
+    restaurant_structure[new_restaurant_name] = new_restaurant_rating
 
-    #Convert dictionary into list of tuples.
-    #Sort restaurants alphabetically.
-    return restaurants
+    return restaurant_structure
+
+
+
+def update_random_restaurant(restaurant_structure):
+    username = raw_input("Hi! What's your name? >>> ")
+
+    random_restaurant = random.sample(restaurant_structure, 1)
+    print random_restaurant
+    # print "{} is rated at {}.".format()
+
+update_random_restaurant(make_restaurant_structure('scores.txt'))
+
 
 def print_restaurant_ratings(filename):
     """Given file of restaurant data, prints sorted data.
@@ -53,5 +69,5 @@ def print_restaurant_ratings(filename):
 
         print "{} is rated at {}.".format(restaurant_name, restaurant_rating)
 
-print_restaurant_ratings(sys.argv[1])
+# print_restaurant_ratings(sys.argv[1])
 
